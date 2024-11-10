@@ -1,3 +1,4 @@
 remote: origin
+target-branch: main
 charts-dirs:
   - charts
