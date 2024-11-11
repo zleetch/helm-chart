@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  w9s:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-11T07:38:25.805027846Z"
+    description: A Helm w9s chart for Kubernetes
+    digest: e5eb29bc72dcdab0a2b8607692d791d35f9079c4fa7c25888bcbd6e4a2370d6e
+    name: w9s
+    type: application
+    urls:
+    - https://github.com/zleetch/helm-chart/releases/download/w9s-0.1.2/w9s-0.1.2.tgz
+    version: 0.1.2
+generated: "2024-11-11T07:38:25.805038486Z"
