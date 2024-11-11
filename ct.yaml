@@ -1,6 +1,5 @@
 remote: origin
 target-branch: main
-charts-dirs:
+chart-dirs:
   - charts
-helm-extra-args: --timeout 600s
 validate-maintainers: false
