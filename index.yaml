@@ -3,6 +3,16 @@ entries:
   canary-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-12T08:35:08.770345792Z"
+    description: A Helm chart for Kubernetes
+    digest: 81add09ae977e57c5125d65863b1d15293ddeea668f3376a8a73230ea8ef5226
+    name: canary-service
+    type: application
+    urls:
+    - https://github.com/zleetch/helm-chart/releases/download/canary-service-0.0.5/canary-service-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-11T07:49:54.615379772Z"
     description: A Helm chart for Kubernetes
     digest: f32fe344f907902f16d0a0937aaba251fa44b073a715b32109ee1f88e728f434
@@ -22,4 +32,4 @@ entries:
     urls:
     - https://github.com/zleetch/helm-chart/releases/download/w9s-0.1.2/w9s-0.1.2.tgz
     version: 0.1.2
-generated: "2024-11-11T07:49:54.615390361Z"
+generated: "2024-11-12T08:35:08.770358436Z"
