@@ -1,0 +1,27 @@
+{{- if .Values.istio.enabled }}
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: {{ include "canary-service.fullname" . }}
+  labels:
+    {{- include "canary-service.labels" . | nindent 4 }}
+spec:
+  gateways:
+    - {{- include "canary-service.fullname" }}
+  http:
+    - name: primary
+      match:
+        - uri:
+            prefix: /
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: {{- include "canary-service.fullname" }}.{{ .Release.Namespace }}.svc.cluster.local
+            subset: stable
+          weight: 100
+        - destination:
+            host: {{- include "canary-service.fullname" }}.{{ .Release.Namespace }}.svc.cluster.local
+            subset: canary
+          weight: 0
+{{- end }}
