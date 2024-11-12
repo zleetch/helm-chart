@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: {{ include "canary-service.fullname" . }}
   labels:
@@ -66,3 +66,24 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      strategy:
+        canary:
+          {{- if .Values.trafficRouting.enabled }}
+          trafficRouting:
+            {{- if .Values.istio.enabled }}
+            istio:
+              virtualService:
+                name: {{- include "canary-service.fullname" }}-rollout-vsvc
+                routes:
+                  - primary
+              destinationRule:
+                name: {{- include "canary-service.fullname"}}-rollout-destrule
+                canarySubsetName: canary
+                stableSubsetName: stable
+            {{- end }}
+          {{- end }}
+          {{- if .Values.splitService.enabled }}
+          canaryService: canary-{{- include "canary-service.fullname" }}
+          stableService: stable-{{- include "canary-service.fullname" }}
+          {{- end }}
+          {{- toYaml .Values.canary | nindent 10 }}

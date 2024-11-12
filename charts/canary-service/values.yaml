@@ -121,3 +121,23 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+canary: {}
+
+trafficRouting:
+  enabled: false
+
+istio:
+  enabled: false
+
+gateway:
+  enabled: false
+  domain: ""
+  host: null
+  https: false
+
+splitService:
+  enabled: false
+
+splitHost:
+  enabled: false
