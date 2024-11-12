@@ -135,7 +135,7 @@ gateway:
   domain: ""
   host: null
   https: false
-  
+
 splitService:
   enabled: false
 
