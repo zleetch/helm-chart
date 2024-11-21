@@ -1,4 +1,4 @@
-.github/workflows/* @zleetch
-charts/* @zleetch
+/.github/workflows/** @zleetch
+/charts/** @zleetch
 CODEOWNERS @zleetch
 *.yaml @zleetch
