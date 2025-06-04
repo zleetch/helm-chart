@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "canary-service.fullname" . }}
+  name: {{ include "rust-service.fullname" . }}
   labels:
-    {{- include "canary-service.labels" . | nindent 4 }}
+    {{- include "rust-service.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
-    apiVersion: argoproj.io/v1alpha1
-    kind: Rollout
-    name: {{ include "canary-service.fullname" . }}
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "rust-service.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

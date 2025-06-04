@@ -1,16 +1,16 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: {{ include "canary-service.fullname" . }}
+  name: {{ include "rust-service.fullname" . }}
   labels:
-    {{- include "canary-service.labels" . | nindent 4 }}
+    {{- include "rust-service.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "canary-service.selectorLabels" . | nindent 6 }}
+      {{- include "rust-service.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "canary-service.labels" . | nindent 8 }}
+        {{- include "rust-service.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "canary-service.serviceAccountName" . }}
+      serviceAccountName: {{ include "rust-service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -66,24 +66,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      strategy:
-        canary:
-          {{- if .Values.trafficRouting.enabled }}
-          trafficRouting:
-            {{- if .Values.istio.enabled }}
-            istio:
-              virtualService:
-                name: {{- include "canary-service.fullname" }}-rollout-vsvc
-                routes:
-                  - primary
-              destinationRule:
-                name: {{- include "canary-service.fullname"}}-rollout-destrule
-                canarySubsetName: canary
-                stableSubsetName: stable
-            {{- end }}
-          {{- end }}
-          {{- if .Values.splitService.enabled }}
-          canaryService: canary-{{- include "canary-service.fullname" }}
-          stableService: stable-{{- include "canary-service.fullname" }}
-          {{- end }}
-          {{- toYaml .Values.canary | nindent 10 }}
