@@ -44,13 +44,6 @@ jobs:
       - name: Generate Helm Docs
         run: helm-docs
 
-      - name: Generate CHANGELOG.md
-        run: |
-          echo "# Changelog" > CHANGELOG.md
-          git log --pretty=format:"- %s (%h)" > temp.log
-          cat temp.log >> CHANGELOG.md
-          rm temp.log
-
       - name: Commit changes
         run: |
           git config --global user.name "github-actions[bot]"
