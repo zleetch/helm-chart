@@ -31,6 +31,11 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+  generate-docs:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
       - name: Install helm-docs
         run: |
           go install github.com/norwoodj/helm-docs/cmd/helm-docs@latest
