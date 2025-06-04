@@ -36,6 +36,16 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Install helm-docs
         run: |
           go install github.com/norwoodj/helm-docs/cmd/helm-docs@latest
@@ -46,9 +56,6 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
           git add charts/**/README.md CHANGELOG.md
           if git diff --cached --quiet; then
             echo "No changes to commit"
