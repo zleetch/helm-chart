@@ -56,7 +56,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add charts/**/README.md CHANGELOG.md
+          git add charts/**/README.md
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
