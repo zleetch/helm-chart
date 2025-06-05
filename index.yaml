@@ -24,6 +24,16 @@ entries:
   rust-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-06-05T09:31:32.812526143Z"
+    description: A Helm chart for Kubernetes
+    digest: d399c90832b86637488a4c12d6a89fb2432c95c94c536ccece011c41ce0e9ec7
+    name: rust-service
+    type: application
+    urls:
+    - https://github.com/zleetch/helm-chart/releases/download/rust-service-0.1.1/rust-service-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-06-04T15:22:01.772432163Z"
     description: A Helm chart for Kubernetes
     digest: 942a353edbb3f476ce6800e37d684303e32d41f158a2badd82833adbf7841b90
@@ -43,4 +53,4 @@ entries:
     urls:
     - https://github.com/zleetch/helm-chart/releases/download/w9s-0.1.2/w9s-0.1.2.tgz
     version: 0.1.2
-generated: "2025-06-04T15:22:01.772445779Z"
+generated: "2025-06-05T09:31:32.81253507Z"
